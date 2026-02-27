@@ -1,0 +1,262 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Custom Properties ─── */
+:root {
+  --color-bg-primary: #050505;
+  --color-bg-secondary: #0A0A0C;
+  --color-accent-blue: #0050FF;
+  --color-accent-cyan: #00D6FF;
+  --color-text-primary: rgba(255, 255, 255, 0.92);
+  --color-text-secondary: rgba(255, 255, 255, 0.60);
+  --font-tight: -0.04em;
+}
+
+/* ─── Reset & Base ─── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: var(--color-bg-primary);
+}
+
+body {
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: 'Inter', 'SF Pro Display', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Gradient Text Utility ─── */
+.text-gradient-sony {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.72) 70%, var(--color-accent-cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-blue {
+  background: linear-gradient(135deg, var(--color-accent-blue) 0%, var(--color-accent-cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Glow Effects ─── */
+.glow-blue {
+  text-shadow: 0 0 80px rgba(0, 80, 255, 0.15), 0 0 40px rgba(0, 214, 255, 0.08);
+}
+
+.glow-product {
+  filter: drop-shadow(0 0 120px rgba(0, 80, 255, 0.1)) drop-shadow(0 0 60px rgba(0, 214, 255, 0.06));
+}
+
+/* ─── Glassmorphism Navbar ─── */
+.navbar-glass {
+  background: rgba(5, 5, 5, 0.0);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.0);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navbar-glass.scrolled {
+  background: rgba(5, 5, 5, 0.82);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ─── CTA Button ─── */
+.btn-sony {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 22px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: white;
+  border-radius: 980px;
+  background: linear-gradient(135deg, var(--color-accent-blue) 0%, var(--color-accent-cyan) 100%);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 0 0 rgba(0, 80, 255, 0.0);
+  white-space: nowrap;
+}
+
+.btn-sony:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 40px rgba(0, 80, 255, 0.35), 0 0 80px rgba(0, 214, 255, 0.12);
+}
+
+.btn-sony-outline {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 26px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: white;
+  border-radius: 980px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.btn-sony-outline:hover {
+  border-color: rgba(0, 214, 255, 0.4);
+  color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 20px rgba(0, 214, 255, 0.1);
+}
+
+/* ─── Scrollytelling Canvas Container ─── */
+.canvas-sticky {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ─── Text Overlay Panels ─── */
+.story-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  z-index: 10;
+  will-change: opacity;
+}
+
+.story-panel-inner {
+  will-change: transform, opacity;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+}
+
+/* ─── Ambient Glow Radial ─── */
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 60%, rgba(0, 80, 255, 0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(0, 214, 255, 0.04) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ─── Spec Cards ─── */
+.spec-card {
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  padding: 28px 24px;
+  backdrop-filter: blur(10px);
+  transition: all 0.4s ease;
+}
+
+.spec-card:hover {
+  border-color: rgba(0, 214, 255, 0.2);
+  background: rgba(0, 80, 255, 0.04);
+  transform: translateY(-2px);
+}
+
+/* ─── Nav Link Hover ─── */
+.nav-link {
+  position: relative;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-accent-blue), var(--color-accent-cyan));
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link:hover {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ─── Smooth Scroll ─── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ─── Custom Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 80, 255, 0.4);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 214, 255, 0.6);
+}
+
+/* ─── Metric Divider ─── */
+.metric-divider {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+}
+
+/* ─── Section fade-in utility (applied via JS) ─── */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Below-fold sections ─── */
+.section-dark {
+  background: var(--color-bg-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-dark-alt {
+  background: var(--color-bg-primary);
+  position: relative;
+  overflow: hidden;
+}
